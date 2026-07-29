@@ -362,3 +362,15 @@ body.dark-mode .med-item.past {
         padding-top: env(safe-area-inset-top, 20px);
     }
 }
+
+.footer{
+    text-align:center;
+    padding:20px;
+    margin-top:20px;
+    color:#777;
+    font-size:14px;
+}
+
+.footer p{
+    margin:4px 0;
+}
