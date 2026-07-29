@@ -2,6 +2,8 @@
 let medications = JSON.parse(localStorage.getItem('medications')) || [];
 let isDarkMode = JSON.parse(localStorage.getItem('darkMode')) || false;
 let currentTheme = localStorage.getItem('theme') || 'teal';
+let deferredPrompt = null;
+let installDismissed = localStorage.getItem('installDismissed');
 
 // ==================== الثيمات ====================
 const themes = {
@@ -32,7 +34,82 @@ function applyTheme() {
 
     localStorage.setItem('theme', currentTheme);
     localStorage.setItem('darkMode', JSON.stringify(isDark));
+
+    // تحديث لون شريط الحالة
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+        metaThemeColor.setAttribute('content', isDark ? theme.darkBg : theme.primary);
+    }
 }
+
+// ==================== إدارة التثبيت PWA ====================
+function showInstallPromotion() {
+    const banner = document.getElementById('installPrompt');
+    const installBtn = document.getElementById('installBtn');
+    
+    if (installDismissed === 'true') {
+        // عرض الزر الصغير فقط في الهيدر
+        if (installBtn) installBtn.style.display = 'flex';
+        return;
+    }
+    
+    // عرض البانر الكبير
+    if (banner) banner.style.display = 'block';
+    if (installBtn) installBtn.style.display = 'flex';
+}
+
+function hideInstallPromotion() {
+    const banner = document.getElementById('installPrompt');
+    if (banner) banner.style.display = 'none';
+    localStorage.setItem('installDismissed', 'true');
+}
+
+// الاستماع لحدث beforeinstallprompt
+window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    showInstallPromotion();
+});
+
+// اكتشاف إذا كان التطبيق مثبتاً بالفعل
+window.addEventListener('appinstalled', () => {
+    deferredPrompt = null;
+    hideInstallPromotion();
+    document.getElementById('installBtn').style.display = 'none';
+    console.log('✅ تم تثبيت التطبيق بنجاح');
+});
+
+// التحقق من وضع العرض
+if (window.matchMedia('(display-mode: standalone)').matches) {
+    console.log('📱 التطبيق يعمل في وضع standalone');
+}
+
+// زر التثبيت في الهيدر
+document.getElementById('installBtn').addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        console.log(`المستخدم: ${outcome === 'accepted' ? 'قبل التثبيت' : 'رفض التثبيت'}`);
+        deferredPrompt = null;
+    }
+});
+
+// زر التثبيت في البانر
+document.getElementById('installBannerBtn').addEventListener('click', async () => {
+    if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        if (outcome === 'accepted') {
+            hideInstallPromotion();
+        }
+        deferredPrompt = null;
+    }
+});
+
+// زر تجاهل البانر
+document.getElementById('dismissBanner').addEventListener('click', () => {
+    hideInstallPromotion();
+});
 
 // ==================== تبديل الوضع الليلي/النهاري ====================
 document.getElementById('themeToggle').addEventListener('click', () => {
@@ -149,7 +226,13 @@ setInterval(renderMedications, 1000);
 // ==================== تسجيل Service Worker ====================
 if ('serviceWorker' in navigator) {
     window.addEventListener('load', () => {
-        navigator.serviceWorker.register('sw.js');
+        navigator.serviceWorker.register('sw.js')
+            .then(reg => {
+                console.log('✅ Service Worker مسجل بنجاح:', reg.scope);
+            })
+            .catch(err => {
+                console.log('❌ فشل تسجيل Service Worker:', err);
+            });
     });
 }
 
