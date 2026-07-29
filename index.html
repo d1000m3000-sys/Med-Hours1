@@ -3,85 +3,133 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="theme-color" content="#0d9488">
-    <meta name="description" content="تطبيق تذكير بمواعيد الأدوية - Med Hours">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <meta name="apple-mobile-web-app-title" content="Med Hours">
+
     <title>Med Hours</title>
-    <link rel="manifest" href="manifest.json">
-    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
-    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="icons/icon-192.png">
-    <link rel="apple-touch-icon" sizes="512x512" href="icons/icon-512.png">
+
+    <meta name="theme-color" content="#0d9488">
+    <meta name="description" content="تطبيق تذكير بمواعيد الأدوية">
+
+    <link rel="manifest" href="./manifest.json">
+
+    <link rel="icon" type="image/png" sizes="192x192" href="./icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="./icon-512.png">
+
+    <link rel="apple-touch-icon" href="./icon-192.png">
+
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Med Hours">
+
     <link rel="stylesheet" href="style.css">
 </head>
+
 <body class="theme-teal">
 
-    <!-- شريط العنوان العلوي -->
-    <header>
-        <h1>Med Hours</h1>
-        <div style="display: flex; gap: 10px; align-items: center;">
-            <button id="installBtn" class="icon-btn" title="تثبيت التطبيق" style="display: none;">📲</button>
-            <button id="themeToggle" class="icon-btn" title="تبديل الوضع الليلي/النهاري">⚙️</button>
-        </div>
-    </header>
+<header>
+    <h1>Med Hours</h1>
 
-    <!-- المحتوى الرئيسي -->
-    <main>
-        <!-- نموذج إدخال الدواء -->
-        <div class="card">
-            <h2>إضافة دواء جديد</h2>
-            <div class="input-group">
-                <label for="medName">اسم الدواء</label>
-                <input type="text" id="medName" placeholder="أدخل اسم الدواء">
-            </div>
-            <div class="input-group">
-                <label for="medDateTime">تاريخ ووقت الجرعة</label>
-                <input type="datetime-local" id="medDateTime">
-            </div>
-            <button id="saveMedBtn" class="btn btn-primary">💾 حفظ الدواء</button>
-        </div>
-
-        <!-- أزرار المدد السريعة -->
-        <div class="card">
-            <h2>إضافة مدة متكررة</h2>
-            <div class="quick-hours">
-                <button class="btn btn-quick" data-hours="4">كل 4 ساعات</button>
-                <button class="btn btn-quick" data-hours="8">كل 8 ساعات</button>
-                <button class="btn btn-quick" data-hours="12">كل 12 ساعة</button>
-                <button class="btn btn-quick" data-hours="24">كل 24 ساعة</button>
-            </div>
-        </div>
-
-        <!-- اختيار الثيمات -->
-        <div class="card">
-            <h2>المظهر</h2>
-            <div class="theme-picker">
-                <button class="theme-dot theme-teal" data-theme="teal"></button>
-                <button class="theme-dot theme-blue" data-theme="blue"></button>
-                <button class="theme-dot theme-purple" data-theme="purple"></button>
-                <button class="theme-dot theme-rose" data-theme="rose"></button>
-                <button class="theme-dot theme-amber" data-theme="amber"></button>
-            </div>
-        </div>
-
-        <!-- قائمة الأدوية المحفوظة -->
-        <div class="card">
-            <h2>أدويتي</h2>
-            <div id="medList"></div>
-        </div>
-    </main>
-
-    <!-- تنبيه التثبيت -->
-    <div id="installPrompt" class="install-banner" style="display: none;">
-        <div class="banner-content">
-            <span>📱 ثبّت التطبيق للوصول السريع</span>
-            <button id="installBannerBtn" class="btn btn-primary" style="width: auto; padding: 10px 20px;">تثبيت</button>
-            <button id="dismissBanner" style="background: none; border: none; font-size: 1.5rem; cursor: pointer;">✕</button>
-        </div>
+    <div style="display:flex;gap:10px;align-items:center;">
+        <button id="installBtn" class="icon-btn" style="display:none;">📲</button>
+        <button id="themeToggle" class="icon-btn">⚙️</button>
     </div>
+</header>
 
-    <script src="app.js"></script>
+<main>
+
+<div class="card">
+<h2>إضافة دواء جديد</h2>
+
+<div class="input-group">
+<label for="medName">اسم الدواء</label>
+<input type="text" id="medName" placeholder="أدخل اسم الدواء">
+</div>
+
+<div class="input-group">
+<label for="medDateTime">تاريخ ووقت الجرعة</label>
+<input type="datetime-local" id="medDateTime">
+</div>
+
+<button id="saveMedBtn" class="btn btn-primary">
+💾 حفظ الدواء
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>إضافة مدة متكررة</h2>
+
+<div class="quick-hours">
+
+<button class="btn btn-quick" data-hours="4">
+كل 4 ساعات
+</button>
+
+<button class="btn btn-quick" data-hours="8">
+كل 8 ساعات
+</button>
+
+<button class="btn btn-quick" data-hours="12">
+كل 12 ساعة
+</button>
+
+<button class="btn btn-quick" data-hours="24">
+كل 24 ساعة
+</button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>المظهر</h2>
+
+<div class="theme-picker">
+
+<button class="theme-dot theme-teal" data-theme="teal"></button>
+
+<button class="theme-dot theme-blue" data-theme="blue"></button>
+
+<button class="theme-dot theme-purple" data-theme="purple"></button>
+
+<button class="theme-dot theme-rose" data-theme="rose"></button>
+
+<button class="theme-dot theme-amber" data-theme="amber"></button>
+
+</div>
+
+</div>
+
+<div class="card">
+
+<h2>أدويتي</h2>
+
+<div id="medList"></div>
+
+</div>
+
+</main>
+
+<div id="installPrompt" class="install-banner" style="display:none;">
+
+<div class="banner-content">
+
+<span>📱 ثبّت التطبيق للوصول السريع</span>
+
+<button id="installBannerBtn" class="btn btn-primary" style="width:auto;padding:10px 20px;">
+تثبيت
+</button>
+
+<button id="dismissBanner" style="background:none;border:none;font-size:24px;cursor:pointer;">
+✕
+</button>
+
+</div>
+
+</div>
+
+<script src="./app.js"></script>
+
 </body>
 </html>
