@@ -1,14 +1,16 @@
 {
-  "name": "Med Hours",
-  "short_name": "MedHours",
-  "description": "تطبيق تذكير بمواعيد الأدوية",
-  "start_url": ".",
+  "name": "Med Hours - تذكير الأدوية",
+  "short_name": "Med Hours",
+  "description": "تطبيق تذكير بمواعيد الأدوية مع مؤقت للجرعات",
+  "start_url": "./index.html",
   "display": "standalone",
-  "background_color": "#ffffff",
+  "background_color": "#0d9488",
   "theme_color": "#0d9488",
   "orientation": "portrait-primary",
   "lang": "ar",
   "dir": "rtl",
+  "scope": "./",
+  "id": "med-hours-pwa-v1",
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -21,6 +23,23 @@
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "form_factor": "narrow",
+      "label": "الشاشة الرئيسية"
+    }
+  ],
+  "categories": ["health", "medical", "lifestyle"],
+  "prefer_related_applications": false
 }
