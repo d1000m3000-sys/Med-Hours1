@@ -287,3 +287,78 @@ body.dark-mode .med-item.past {
         grid-template-columns: 1fr;
     }
   }
+/* ==================== بانر التثبيت ==================== */
+.install-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 500px;
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    border: 2px solid var(--primary);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateX(-50%) translateY(100px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(-50%) translateY(0);
+        opacity: 1;
+    }
+}
+
+.banner-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+    text-align: center;
+}
+
+.banner-content span {
+    flex: 1;
+    min-width: 150px;
+    font-weight: 500;
+}
+
+#dismissBanner {
+    color: var(--text-secondary);
+    transition: var(--transition);
+}
+
+#dismissBanner:hover {
+    color: #ef4444;
+    transform: scale(1.2);
+}
+
+/* تحسين زر التثبيت في الهيدر للأجهزة المحمولة */
+@media (max-width: 400px) {
+    .banner-content {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    .banner-content span {
+        font-size: 0.9rem;
+    }
+}
+
+/* تصحيح لمشكلة iOS Safari */
+@supports (-webkit-touch-callout: none) {
+    body {
+        padding-bottom: env(safe-area-inset-bottom, 20px);
+    }
+    
+    header {
+        padding-top: env(safe-area-inset-top, 20px);
+    }
+}
