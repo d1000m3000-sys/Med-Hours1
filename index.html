@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0d9488">
+    <meta name="description" content="تطبيق تذكير بمواعيد الأدوية - Med Hours">
+    <title>Med Hours</title>
+    <link rel="manifest" href="manifest.json">
+    <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="icons/icon-512.png">
+    <link rel="apple-touch-icon" href="icons/icon-192.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-teal">
+
+    <!-- شريط العنوان العلوي -->
+    <header>
+        <h1>Med Hours</h1>
+        <button id="themeToggle" class="icon-btn" title="تبديل الوضع الليلي/النهاري">⚙️</button>
+    </header>
+
+    <!-- المحتوى الرئيسي -->
+    <main>
+        <!-- نموذج إدخال الدواء -->
+        <div class="card">
+            <h2>إضافة دواء جديد</h2>
+            <div class="input-group">
+                <label for="medName">اسم الدواء</label>
+                <input type="text" id="medName" placeholder="أدخل اسم الدواء">
+            </div>
+            <div class="input-group">
+                <label for="medDateTime">تاريخ ووقت الجرعة</label>
+                <input type="datetime-local" id="medDateTime">
+            </div>
+            <button id="saveMedBtn" class="btn btn-primary">💾 حفظ الدواء</button>
+        </div>
+
+        <!-- أزرار المدد السريعة -->
+        <div class="card">
+            <h2>إضافة مدة متكررة</h2>
+            <div class="quick-hours">
+                <button class="btn btn-quick" data-hours="4">كل 4 ساعات</button>
+                <button class="btn btn-quick" data-hours="8">كل 8 ساعات</button>
+                <button class="btn btn-quick" data-hours="12">كل 12 ساعة</button>
+                <button class="btn btn-quick" data-hours="24">كل 24 ساعة</button>
+            </div>
+        </div>
+
+        <!-- اختيار الثيمات -->
+        <div class="card">
+            <h2>المظهر</h2>
+            <div class="theme-picker">
+                <button class="theme-dot theme-teal" data-theme="teal"></button>
+                <button class="theme-dot theme-blue" data-theme="blue"></button>
+                <button class="theme-dot theme-purple" data-theme="purple"></button>
+                <button class="theme-dot theme-rose" data-theme="rose"></button>
+                <button class="theme-dot theme-amber" data-theme="amber"></button>
+            </div>
+        </div>
+
+        <!-- قائمة الأدوية المحفوظة -->
+        <div class="card">
+            <h2>أدويتي</h2>
+            <div id="medList"></div>
+        </div>
+    </main>
+
+    <script src="app.js"></script>
+</body>
+              </html>
