@@ -1,0 +1,289 @@
+/* ==================== المتغيرات العامة ==================== */
+:root {
+    --primary: #0d9488;
+    --secondary: #14b8a6;
+    --bg: #f0fdfa;
+    --card-bg: #ffffff;
+    --text: #1e293b;
+    --text-secondary: #64748b;
+    --border: rgba(0, 0, 0, 0.1);
+    --radius: 16px;
+    --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    --transition: all 0.3s ease;
+}
+
+/* ==================== الأساسيات ==================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', 'Tahoma', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    min-height: 100vh;
+    transition: var(--transition);
+    padding-bottom: 30px;
+}
+
+/* ==================== شريط العنوان ==================== */
+header {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    padding: 20px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header h1 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+}
+
+.icon-btn {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.5rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition);
+    backdrop-filter: blur(10px);
+}
+
+.icon-btn:hover {
+    background: rgba(255, 255, 255, 0.35);
+    transform: rotate(30deg);
+}
+
+/* ==================== المحتوى الرئيسي ==================== */
+main {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* ==================== البطاقات ==================== */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    transition: var(--transition);
+}
+
+.card h2 {
+    font-size: 1.1rem;
+    margin-bottom: 16px;
+    color: var(--primary);
+    font-weight: 600;
+}
+
+/* ==================== حقول الإدخال ==================== */
+.input-group {
+    margin-bottom: 14px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    font-size: 1rem;
+    background: var(--bg);
+    color: var(--text);
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.15);
+}
+
+/* ==================== الأزرار ==================== */
+.btn {
+    padding: 12px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: inherit;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: white;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+.quick-hours {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.btn-quick {
+    background: var(--bg);
+    color: var(--primary);
+    border: 2px solid var(--primary);
+    font-size: 0.9rem;
+}
+
+.btn-quick:hover {
+    background: var(--primary);
+    color: white;
+}
+
+.btn-taken {
+    background: #22c55e;
+    color: white;
+    font-size: 0.85rem;
+    padding: 8px 14px;
+    white-space: nowrap;
+}
+
+.btn-taken:hover {
+    background: #16a34a;
+}
+
+/* ==================== قائمة الأدوية ==================== */
+#medList {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.med-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 14px 16px;
+    background: var(--bg);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    gap: 10px;
+    transition: var(--transition);
+}
+
+.med-item.past {
+    border-color: #ef4444;
+    background: #fef2f2;
+}
+
+.med-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+}
+
+.med-info strong {
+    font-size: 1rem;
+}
+
+.med-info small {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.time-remaining {
+    color: var(--primary);
+    font-weight: 600;
+    font-size: 0.85rem;
+}
+
+.past .time-remaining {
+    color: #ef4444;
+}
+
+.empty-msg {
+    text-align: center;
+    color: var(--text-secondary);
+    padding: 30px;
+    font-size: 0.95rem;
+}
+
+/* ==================== اختيار الثيمات ==================== */
+.theme-picker {
+    display: flex;
+    gap: 14px;
+    justify-content: center;
+}
+
+.theme-dot {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.theme-dot:hover {
+    transform: scale(1.2);
+}
+
+.theme-dot:focus {
+    border-color: var(--text);
+}
+
+.theme-teal  { background: linear-gradient(135deg, #0d9488, #14b8a6); }
+.theme-blue  { background: linear-gradient(135deg, #2563eb, #3b82f6); }
+.theme-purple { background: linear-gradient(135deg, #7c3aed, #8b5cf6); }
+.theme-rose  { background: linear-gradient(135deg, #e11d48, #f43f5e); }
+.theme-amber { background: linear-gradient(135deg, #d97706, #f59e0b); }
+
+/* ==================== الوضع الليلي ==================== */
+body.dark-mode header {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .med-item.past {
+    background: rgba(239, 68, 68, 0.15);
+}
+
+/* ==================== تجاوب ==================== */
+@media (max-width: 400px) {
+    header h1 {
+        font-size: 1.3rem;
+    }
+    .quick-hours {
+        grid-template-columns: 1fr;
+    }
+  }
