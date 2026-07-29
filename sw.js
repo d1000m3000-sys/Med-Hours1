@@ -1,4 +1,4 @@
-const CACHE_NAME = 'med-hours-v2';
+const CACHE_NAME = 'med-hours-v3';
 
 const ASSETS = [
   './',
